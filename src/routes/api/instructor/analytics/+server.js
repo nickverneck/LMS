@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import { db } from '../../../lib/server/db';
-import { courses, enrollments } from '../../../lib/server/db/schema';
+import { courses, enrollments, users } from '../../../lib/server/db/schema';
 import { eq, count } from 'drizzle-orm';
 
 export async function GET({ locals }) {
@@ -11,13 +11,16 @@ export async function GET({ locals }) {
 	try {
 		const instructorCourses = await db.select({
 			id: courses.id,
-			title: courses.title,
-			enrollmentCount: count(enrollments.id)
+				title: courses.title,
+				enrollmentCount: count(enrollments.id),
+				instructorFirstName: users.firstName,
+				instructorLastName: users.lastName
 		})
 			.from(courses)
 			.leftJoin(enrollments, eq(courses.id, enrollments.courseId))
+			.innerJoin(users, eq(courses.instructorId, users.id))
 			.where(eq(courses.instructorId, locals.user.userId))
-			.groupBy(courses.id, courses.title);
+			.groupBy(courses.id, courses.title, users.firstName, users.lastName);
 
 		return json(instructorCourses);
 	} catch (error) {

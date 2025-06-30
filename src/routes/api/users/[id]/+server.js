@@ -22,10 +22,10 @@ export async function PUT({ params, request, locals }) {
 		return json({ error: 'Unauthorized' }, { status: 403 });
 	}
 
-	const { name, email } = await request.json();
+	const { firstName, lastName, email } = await request.json();
 
 	try {
-		await db.update(users).set({ name, email }).where(eq(users.id, parseInt(params.id)));
+		await db.update(users).set({ firstName, lastName, email }).where(eq(users.id, parseInt(params.id)));
 		return json({ message: 'Profile updated successfully' });
 	} catch (error) {
 		return json({ error: 'Could not update profile' }, { status: 500 });

@@ -49,12 +49,12 @@ This document tracks the progress of the LMS development.
 
 ## UI/UX & Styling
 
-- [ ] Implement responsive design
-- [ ] Apply consistent styling (e.g., Tailwind CSS)
-- [ ] Design intuitive navigation
+- [x] Implement responsive design
+- [x] Apply consistent styling (e.g., Tailwind CSS)
+- [x] Design intuitive navigation
 
 ## Deployment
 
-- [ ] Set up deployment for SvelteKit frontend/API
-- [ ] Configure database hosting
-- [ ] Set up media storage
+- [x] Set up deployment for SvelteKit frontend/API
+- [x] Configure database hosting
+- [x] Set up media storage

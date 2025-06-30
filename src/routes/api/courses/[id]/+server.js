@@ -1,11 +1,22 @@
 import { json } from '@sveltejs/kit';
 import { db } from '../../../../lib/server/db';
-import { courses } from '../../../../lib/server/db/schema';
+import { courses, users } from '../../../../lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 
 export async function GET({ params }) {
 	try {
-		const course = await db.select().from(courses).where(eq(courses.id, parseInt(params.id))).limit(1);
+		const course = await db.select({
+			id: courses.id,
+			title: courses.title,
+			description: courses.description,
+			price: courses.price,
+			instructorFirstName: users.firstName,
+			instructorLastName: users.lastName
+		})
+			.from(courses)
+			.innerJoin(users, eq(courses.instructorId, users.id))
+			.where(eq(courses.id, parseInt(params.id)))
+			.limit(1);
 
 		if (course.length === 0) {
 			return json({ error: 'Course not found' }, { status: 404 });

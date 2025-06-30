@@ -19,24 +19,17 @@ export async function POST({ request, locals }) {
 		}
 
 		// Check if the student is enrolled in the course that contains this lesson
-		// This requires joining lessons -> modules -> courses -> enrollments
 		const isEnrolled = await db.select()
 			.from(enrollments)
-			.innerJoin(lessons, eq(enrollments.courseId, lessons.moduleId)) // This join is incorrect. Need to join lessons to modules, then modules to courses, then courses to enrollments.
+			.innerJoin(courses, eq(enrollments.courseId, courses.id))
+			.innerJoin(modules, eq(courses.id, modules.courseId))
+			.innerJoin(lessons, eq(modules.id, lessons.moduleId))
 			.where(and(eq(enrollments.studentId, studentId), eq(lessons.id, lessonId)))
 			.limit(1);
 
-		// Corrected join logic (conceptual - will need to be implemented carefully)
-		// const isEnrolled = await db.select()
-		//   .from(enrollments)
-		//   .innerJoin(courses, eq(enrollments.courseId, courses.id))
-		//   .innerJoin(modules, eq(courses.id, modules.courseId))
-		//   .innerJoin(lessons, eq(modules.id, lessons.moduleId))
-		//   .where(and(eq(enrollments.studentId, studentId), eq(lessons.id, lessonId)))
-		//   .limit(1);
-
-		// For now, skipping the complex enrollment check to proceed with basic progress tracking
-		// In a real application, this check is crucial.
+		if (isEnrolled.length === 0) {
+			return json({ error: 'Student not enrolled in this course' }, { status: 403 });
+		}
 
 		// Check if the lesson is already marked as complete for this student
 		const alreadyCompleted = await db.select().from(completedLessons).where(and(eq(completedLessons.studentId, studentId), eq(completedLessons.lessonId, lessonId))).limit(1);

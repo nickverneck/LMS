@@ -6,13 +6,20 @@ import jwt from 'jsonwebtoken';
 import { env } from '$env/dynamic/private';
 
 export async function POST({ request }) {
-	const { email, password } = await request.json();
+	const { firstName, lastName, email, password, confirmPassword, confirmEmail } = await request.json();
 
 	// Register user
 	if (request.url.endsWith('/api/auth/register')) {
+		if (password !== confirmPassword) {
+			return json({ error: 'Passwords do not match' }, { status: 400 });
+		}
+		if (email !== confirmEmail) {
+			return json({ error: 'Emails do not match' }, { status: 400 });
+		}
+
 		const hashedPassword = await bcrypt.hash(password, 10);
 		try {
-			await db.insert(users).values({ email, passwordHash: hashedPassword, name: email, role: 'student' });
+			await db.insert(users).values({ firstName, lastName, email, passwordHash: hashedPassword, role: 'student' });
 			return json({ message: 'User registered successfully' }, { status: 201 });
 		} catch (error) {
 			return json({ error: 'User with this email already exists' }, { status: 409 });
@@ -21,7 +28,7 @@ export async function POST({ request }) {
 
 	// Login user
 	if (request.url.endsWith('/api/auth/login')) {
-		const user = await db.select().from(users).where(users.email === email).limit(1);
+		const user = await db.select().from(users).where(eq(users.email, email)).limit(1);
 
 		if (user.length === 0) {
 			return json({ error: 'Invalid credentials' }, { status: 401 });

@@ -2,7 +2,8 @@ import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
 import { env } from '$env/dynamic/private';
 import { db } from '../../../lib/server/db';
-import { payments, enrollments } from '../../../lib/server/db/schema';
+import { payments, enrollments, users } from '../../../lib/server/db/schema';
+import { eq, and } from 'drizzle-orm';
 
 const stripe = new Stripe(env.STRIPE_SECRET_KEY, { apiVersion: '2024-04-10' });
 

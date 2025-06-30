@@ -27,7 +27,7 @@
     <p>Loading course details...</p>
   {:else}
     <h1>{course.title}</h1>
-    <p><strong>Instructor:</strong> {course.instructorId} (TODO: Fetch instructor name)</p>
+    <p><strong>Instructor:</strong> {course.instructorFirstName} {course.instructorLastName}</p>
     <p><strong>Description:</strong> {course.description}</p>
     <p><strong>Price:</strong> ${course.price}</p>
     <!-- TODO: Display modules, lessons, live sessions -->

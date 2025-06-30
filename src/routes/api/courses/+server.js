@@ -1,6 +1,7 @@
 import { json } from '@sveltejs/kit';
 import { db } from '../../../lib/server/db';
-import { courses } from '../../../lib/server/db/schema';
+import { courses, users } from '../../../lib/server/db/schema';
+import { eq } from 'drizzle-orm';
 
 export async function POST({ request, locals }) {
 	if (!locals.user || locals.user.role !== 'instructor') {
@@ -25,7 +26,16 @@ export async function POST({ request, locals }) {
 
 export async function GET() {
 	try {
-		const allCourses = await db.select().from(courses);
+		const allCourses = await db.select({
+			id: courses.id,
+			title: courses.title,
+			description: courses.description,
+			price: courses.price,
+			instructorFirstName: users.firstName,
+			instructorLastName: users.lastName
+		})
+			.from(courses)
+			.innerJoin(users, eq(courses.instructorId, users.id));
 		return json(allCourses);
 	} catch (error) {
 		console.error('Error fetching courses:', error);
