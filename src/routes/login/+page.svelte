@@ -31,123 +31,43 @@
   }
 </script>
 
-<style>
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f3f4f6;
-  }
-
-  .card {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    width: 100%;
-    max-width: 28rem;
-  }
-
-  .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    color: #1f2937;
-  }
-
-  .error-message {
-    color: #ef4444;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .form-group {
-    margin-bottom: 1rem;
-  }
-
-  .form-group label {
-    display: block;
-    color: #374151;
-    font-size: 0.875rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-
-  .form-group input {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    appearance: none;
-    border: 1px solid #d1d5db;
-    border-radius: 0.25rem;
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    color: #374151;
-    line-height: 1.25;
-    outline: none;
-  }
-
-  .form-group input:focus {
-    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
-  }
-
-  .form-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .button {
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    font-weight: bold;
-    color: #fff;
-    cursor: pointer;
-    outline: none;
-  }
-
-  .button-primary {
-    background-color: #3b82f6;
-  }
-
-  .button-primary:hover {
-    background-color: #2563eb;
-  }
-
-  .link {
-    display: inline-block;
-    font-size: 0.875rem;
-    color: #3b82f6;
-    text-decoration: none;
-  }
-
-  .link:hover {
-    color: #2563eb;
-  }
-</style>
-
-<main class="container">
-  <div class="card">
-    <h1 class="title">Login</h1>
+<main class="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+  <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md backdrop-filter backdrop-blur-lg bg-opacity-70 dark:bg-opacity-70 border border-gray-200 dark:border-gray-700">
+    <h1 class="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-gray-50">Login</h1>
 
     {#if error}
-      <p class="error-message">{error}</p>
+      <p class="text-red-500 text-center mb-4">{error}</p>
     {/if}
 
     <form on:submit|preventDefault={handleLogin}>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" bind:value={email} required />
+      <div class="mb-4">
+        <label for="email" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Email:</label>
+        <input
+          type="email"
+          id="email"
+          bind:value={email}
+          required
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600"
+        />
       </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" bind:value={password} required />
+      <div class="mb-6">
+        <label for="password" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Password:</label>
+        <input
+          type="password"
+          id="password"
+          bind:value={password}
+          required
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600"
+        />
       </div>
-      <div class="form-actions">
-        <button type="submit" class="button button-primary">
+      <div class="flex items-center justify-between">
+        <button
+          type="submit"
+          class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
           Login
         </button>
-        <a href="/register" class="link">
+        <a href="/register" class="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-600">
           Don't have an account? Register
         </a>
       </div>

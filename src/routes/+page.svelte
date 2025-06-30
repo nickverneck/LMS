@@ -18,210 +18,34 @@
   });
 </script>
 
-<style>
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  .hero-section {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .hero-section h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #1f2937;
-    margin-bottom: 1rem;
-  }
-
-  .hero-section p {
-    font-size: 1.25rem;
-    color: #374151;
-  }
-
-  .explore-button {
-    margin-top: 1.5rem;
-    display: inline-block;
-    background-color: #2563eb;
-    color: white;
-    font-size: 1.125rem;
-    font-weight: 600;
-    padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-  }
-
-  .explore-button:hover {
-    background-color: #1d4ed8;
-  }
-
-  .featured-courses-section {
-    margin-bottom: 3rem;
-  }
-
-  .featured-courses-section h2 {
-    font-size: 2.25rem;
-    font-weight: bold;
-    color: #1f2937;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .error-message {
-    color: red;
-    text-align: center;
-  }
-
-  .no-courses-message {
-    text-align: center;
-    color: #4b5563;
-  }
-
-  .course-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .course-card {
-    background-color: #fff;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-  }
-
-  .course-card:hover {
-    transform: scale(1.02);
-  }
-
-  .course-card-content {
-    padding: 1.5rem;
-  }
-
-  .course-card h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 0.5rem;
-  }
-
-  .course-card .instructor-info {
-    color: #4b5563;
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
-  }
-
-  .course-card .description {
-    color: #374151;
-    margin-bottom: 1rem;
-  }
-
-  .course-card .price-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
-  .course-card .price {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #2563eb;
-  }
-
-  .course-card .discount {
-    color: #10b981;
-    font-weight: 600;
-  }
-
-  .view-course-button {
-    display: block;
-    width: 100%;
-    background-color: #3b82f6;
-    color: white;
-    text-align: center;
-    padding: 0.5rem 0;
-    border-radius: 0.5rem;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-  }
-
-  .view-course-button:hover {
-    background-color: #2563eb;
-  }
-
-  .cta-section {
-    text-align: center;
-    padding: 3rem;
-    background-color: #f3f4f6;
-    border-radius: 0.5rem;
-  }
-
-  .cta-section h2 {
-    font-size: 1.875rem;
-    font-weight: bold;
-    color: #1f2937;
-    margin-bottom: 1rem;
-  }
-
-  .cta-section p {
-    font-size: 1.125rem;
-    color: #374151;
-    margin-bottom: 1.5rem;
-  }
-
-  .signup-button {
-    display: inline-block;
-    background-color: #10b981;
-    color: white;
-    font-size: 1.125rem;
-    font-weight: 600;
-    padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-  }
-
-  .signup-button:hover {
-    background-color: #059669;
-  }
-</style>
-
-<main class="container">
-  <section class="hero-section">
-    <h1>Learn AI from the Best</h1>
-    <p>Live, interactive courses taught by industry experts.</p>
-    <a href="/courses" class="explore-button">Explore All Courses</a>
+<main class="container mx-auto px-4 py-8">
+  <section class="text-center mb-12">
+    <h1 class="text-5xl font-bold text-gray-900 dark:text-gray-50 mb-4">Learn AI from the Best</h1>
+    <p class="text-xl text-gray-700 dark:text-gray-300">Live, interactive courses taught by industry experts.</p>
+    <a href="/courses" class="mt-6 inline-block bg-indigo-600 text-white text-lg font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300">Explore All Courses</a>
   </section>
 
-  <section class="featured-courses-section">
-    <h2>Featured AI Courses</h2>
+  <section class="mb-12">
+    <h2 class="text-4xl font-bold text-gray-900 dark:text-gray-50 text-center mb-8">Featured AI Courses</h2>
     {#if error}
-      <p class="error-message">{error}</p>
+      <p class="text-red-500 text-center">{error}</p>
     {:else if courses.length === 0}
-      <p class="no-courses-message">No courses available yet. Please check back later!</p>
+      <p class="text-center text-gray-600 dark:text-gray-400">No courses available yet. Please check back later!</p>
     {:else}
-      <div class="course-grid">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {#each courses as course}
-          <div class="course-card">
-            <div class="course-card-content">
-              <h3>{course.title}</h3>
-              <p class="instructor-info">Instructor: {course.instructorFirstName} {course.instructorLastName}</p>
-              <p class="description">{course.description}</p>
-              <div class="price-info">
-                <span class="price">${course.price}</span>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 backdrop-filter backdrop-blur-lg bg-opacity-70 dark:bg-opacity-70 border border-gray-200 dark:border-gray-700">
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold text-gray-900 dark:text-gray-50 mb-2">{course.title}</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Instructor: {course.instructorFirstName} {course.instructorLastName}</p>
+              <p class="text-gray-700 dark:text-gray-300 mb-4">{course.description}</p>
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">${course.price}</span>
                 {#if course.discount}
-                  <span class="discount">{course.discount}% Off!</span>
+                  <span class="text-emerald-600 dark:text-emerald-400 font-semibold">{course.discount}% Off!</span>
                 {/if}
               </div>
-              <a href="/courses/{course.id}" class="view-course-button">View Course</a>
+              <a href="/courses/{course.id}" class="block w-full bg-indigo-500 text-white text-center py-2 rounded-lg hover:bg-indigo-600 transition duration-300">View Course</a>
             </div>
           </div>
         {/each}
@@ -229,9 +53,9 @@
     {/if}
   </section>
 
-  <section class="cta-section">
-    <h2>Ready to Start Your AI Journey?</h2>
-    <p>Join our community of AI enthusiasts and learn from the best.</p>
-    <a href="/register" class="signup-button">Sign Up Now</a>
+  <section class="text-center py-12 bg-gray-100 dark:bg-gray-800 rounded-lg backdrop-filter backdrop-blur-lg bg-opacity-70 dark:bg-opacity-70 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-50 mb-4">Ready to Start Your AI Journey?</h2>
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">Join our community of AI enthusiasts and learn from the best.</p>
+    <a href="/register" class="inline-block bg-emerald-600 text-white text-lg font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-emerald-700 transition duration-300">Sign Up Now</a>
   </section>
 </main>

@@ -1,1 +1,6 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@plugin 'flowbite/plugin';
 /* Your existing app.css content can go here */
