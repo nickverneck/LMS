@@ -15,10 +15,20 @@ This document tracks the progress of the LMS development.
 - [x] Instructor profile management
 - [x] Role-based access control (student/instructor)
 
+### User Dashboard
+
+- [ ] Create user dashboard page
+- [ ] Display user-specific information (e.g., enrolled courses, progress)
+- [ ] Link to settings and sign out
+
 ## Course Management
 
 - [x] Database schema for courses, modules, lessons
 - [x] Instructor dashboard for course creation
+- [x] Implement collapsible side menu for admin tools with icons
+- [x] Integrate course creation into dashboard for instructors and admins
+- [x] Implement collapsible sidebar with Flowbite Svelte components
+- [x] Adjust dashboard layout based on sidebar collapse state
 - [x] Course catalog page
 - [x] Course detail page
 - [x] Content upload (video, text, code)

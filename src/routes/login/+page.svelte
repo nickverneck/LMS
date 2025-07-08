@@ -1,6 +1,7 @@
 <script>
   import { goto } from '\$app/navigation';
   import { onMount } from 'svelte';
+  import { login } from '../../stores/authStore';
 
   let email = '';
   let password = '';
@@ -22,7 +23,7 @@
       }
 
       const data = await response.json();
-      localStorage.setItem('token', data.token);
+      login(data.token, data.user);
       goto('/'); // Redirect to home or dashboard
     } catch (e) {
       error = e.message;

@@ -1,5 +1,6 @@
 <script>
   import { goto } from '\$app/navigation';
+  import { login } from '../../stores/authStore';
 
   let firstName = '';
   let lastName = '';
@@ -25,7 +26,9 @@
         throw new Error(errData.error || 'Registration failed');
       }
 
-      success = 'Registration successful! You can now log in.';
+      const data = await response.json();
+      login(data.token, data.user); // Assuming registration also logs in and returns a token
+      success = 'Registration successful! You are now logged in.';
       error = null;
       firstName = '';
       lastName = '';
@@ -35,7 +38,7 @@
       confirmPassword = '';
       
       setTimeout(() => {
-        goto('/login');
+        goto('/');
       }, 2000);
 
     } catch (e) {
