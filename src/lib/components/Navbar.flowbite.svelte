@@ -40,7 +40,7 @@
   <NavUl>
     <NavLi href="/">Home</NavLi>
     <NavLi href="/courses">Courses</NavLi>
-    <NavLi href="/login">Login</NavLi>
-    <NavLi href="/register" class="px-3 py-2">Register</NavLi>
+    <NavLi href="/auth">Login</NavLi>
+<NavLi href="/auth" class="px-3 py-2">Register</NavLi>
   </NavUl>
 </Navbar>

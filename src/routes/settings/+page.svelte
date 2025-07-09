@@ -9,7 +9,7 @@
     const unsubscribe = authStore.subscribe(value => {
       user = value.user;
       if (!user) {
-        goto('/login'); // Redirect to login if not authenticated
+        goto('/auth'); // Redirect to login if not authenticated
       }
     });
 

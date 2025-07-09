@@ -56,6 +56,6 @@
   <section class="text-center py-12 bg-gray-100 dark:bg-gray-800 rounded-lg backdrop-filter backdrop-blur-lg bg-opacity-70 dark:bg-opacity-70 border border-gray-200 dark:border-gray-700">
     <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-50 mb-4">Ready to Start Your AI Journey?</h2>
     <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">Join our community of AI enthusiasts and learn from the best.</p>
-    <a href="/register" class="inline-block bg-emerald-600 text-white text-lg font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-emerald-700 transition duration-300">Sign Up Now</a>
+    <a href="/auth" class="inline-block bg-emerald-600 text-white text-lg font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-emerald-700 transition duration-300">Sign Up Now</a>
   </section>
 </main>
